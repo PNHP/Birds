@@ -71,7 +71,7 @@ blgr.site <- unique(blgr.site) #remove redundant rows
 
 #now add in all the site information from sites where VIRA was NOT observed
 temp <- sdat[(sdat$SiteXVisit %in% Sites_MissVIRA),] #which sites are not part of the VIRA positive set
-sitecovs_VIRAzero <- sitecovs_VIRAzero[,c("SiteXVisit","PointID", "JulianDate", "Observer")] #just the columns of interest
+sitecovs_VIRAzero <- temp[,c("SiteXVisit","PointID", "JulianDate", "Observer")] #just the columns of interest
 sitecovs_VIRAzero <- unique(sitecovs_VIRAzero) #remove redundant rows
 #some SiteXVisits are repeated because there are different TSLSR times nested within them, but everything else is the same; to address this, will aggregate and average TSLSR times within SiteXVisit combo
 TSLSR <- aggregate(temp$TSLSR, by=list(temp$SiteXVisit), FUN=mean)
